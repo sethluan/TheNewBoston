@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.thenewboston.seth" >
+
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.thenewboston.seth.Splash"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.thenewboston.seth.startingPoint"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.thenewboston.seth.STARTINGPOINT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.thenewboston.seth.Menu"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.thenewboston.seth.MENU" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.thenewboston.seth.AboutUs"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Dialog" >
+            <intent-filter>
+                <action android:name="com.thenewboston.seth.ABOUT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.thenewboston.seth.TextPlay"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.thenewboston.seth.Email"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.thenewboston.seth.Camera"
+            android:label="Camera Application"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.thenewboston.seth.Data"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.thenewboston.seth.OpenedClass"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.thenewboston.seth.Prefs"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Dialog" >
+            <intent-filter>
+                <action android:name="com.thenewboston.seth.PREFS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

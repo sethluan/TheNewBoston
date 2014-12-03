@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -14,11 +16,16 @@ import android.widget.ListView;
  */
 public class Menu extends ListActivity {
 
-    String classes [] = {"startingPoint", "TextPlay", "Email", "Camera", "Data", "example5", "example6"};
+    String classes [] = {"startingPoint", "TextPlay", "Email", "Camera", "Data", "GFX", "GFXSurface", "SoundStuff", "Slider"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //full screen
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setListAdapter(new ArrayAdapter<String>(Menu.this, android.R.layout.simple_list_item_1, classes));
     }
 

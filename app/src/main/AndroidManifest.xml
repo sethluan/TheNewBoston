@@ -115,6 +115,10 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name="com.thenewboston.seth.Accelerate"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name="com.thenewboston.seth.Prefs"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Dialog" >

@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -110,12 +111,23 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name="com.thenewboston.seth.SQLiteExample"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name="com.thenewboston.seth.Prefs"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Dialog" >
             <intent-filter>
                 <action android:name="com.thenewboston.seth.PREFS" />
-
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.thenewboston.seth.SQLView"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.thenewboston.seth.SQLVIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

@@ -2,6 +2,9 @@ package com.thenewboston.seth;
 
 import android.app.Activity;
 import android.content.res.AssetManager;
+import android.graphics.BitmapFactory;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -11,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -99,25 +103,43 @@ public class ExternalData extends Activity implements AdapterView.OnItemSelected
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.bConfirmSaveAs:
+
                 save.setVisibility(View.VISIBLE);
+                String f = saveFile.getText().toString();
+                file = new File(path, f + ".png");
+
+
+                break;
+            case R.id.bSaveFile:
 
                 checkState();
                 if (canW == canR == true){
+                    path.mkdirs();
 
-                        //InputStream is = getResources().getDrawable(R.drawable.baseball);
-                        AssetManager am = getAssets();
                     try {
-                        InputStream is = am.open("baseball.png");
+                        InputStream is = getResources().openRawResource(R.raw.baseball);
+                        //InputStream is = am.open("baseball.png");
                         OutputStream os = new FileOutputStream(file);
+                        byte[] data = new byte[is.available()];
+                        is.read(data);
+                        os.write(data);
+                        is.close();
+                        os.close();
+
+                        Toast t = Toast.makeText(this, "File has been saved", Toast.LENGTH_LONG);
+                        t.show();
+                        //update files for the user to use
+                        MediaScannerConnection.scanFile(this, new String[] {file.toString()}, null, new MediaScannerConnection.OnScanCompletedListener() {
+                            @Override
+                            public void onScanCompleted(String path, Uri uri) {
+                                Toast t = Toast.makeText(ExternalData.this, "scan complete", Toast.LENGTH_SHORT);
+                                t.show();
+                            }
+                        });
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
-
-                break;
-            case R.id.bSaveFile:
-                String f = saveFile.getText().toString();
-                file = new File(path, f);
                 
                 break;
         }

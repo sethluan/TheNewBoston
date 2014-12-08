@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.sql.SQLException;
+
 /**
  * Created by 22707561 on 12/5/2014.
  */
@@ -37,7 +39,7 @@ public class SQLiteExample extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.bSQLUpdate:
                 boolean didItWork = true;
                 try {
@@ -48,7 +50,7 @@ public class SQLiteExample extends Activity implements View.OnClickListener{
                     entry.open();
                     entry.createEntry(name, hotness);
                     entry.close();
-                } catch (Exception e){
+                } catch (Exception e) {
                     didItWork = false;
                     String error = e.toString();
                     Dialog d = new Dialog(this);
@@ -72,6 +74,74 @@ public class SQLiteExample extends Activity implements View.OnClickListener{
             case R.id.bSQLopenView:
                 Intent i = new Intent("com.thenewboston.seth.SQLVIEW");
                 startActivity(i);
+                break;
+            case R.id.bGetInfo:
+                String s = sqlRow.getText().toString();
+                long l = Long.parseLong(s);
+                HotOrNot hon = new HotOrNot(this);
+                try {
+                    hon.open();
+
+
+                    String returnedName = hon.getName(l);
+                    String returnedHotness = hon.getHotness(l);
+                    hon.close();
+
+                    sqlName.setText(returnedName);
+                    sqlHotness.setText(returnedHotness);
+                } catch (Exception e) {
+
+                    String error = e.toString();
+                    Dialog d = new Dialog(this);
+                    d.setTitle("Dang!");
+                    TextView tv = new TextView(this);
+                    tv.setText(error);
+                    d.setContentView(tv);
+                    d.show();
+                }
+                break;
+            case R.id.bSQLmodify:
+                String mName = sqlName.getText().toString();
+                String mHotness = sqlHotness.getText().toString();
+                String sRow = sqlRow.getText().toString();
+                long lRow = Long.parseLong(sRow);
+
+                HotOrNot ex = new HotOrNot(this);
+                try {
+                    ex.open();
+
+                    ex.updateEntry(lRow, mName, mHotness);
+                    ex.close();
+                } catch (Exception e) {
+                    didItWork = false;
+                    String error = e.toString();
+                    Dialog d = new Dialog(this);
+                    d.setTitle("Dang!");
+                    TextView tv = new TextView(this);
+                    tv.setText(error);
+                    d.setContentView(tv);
+                    d.show();
+                }
+                break;
+            case R.id.bSQLdelete:
+                String sRow1 = sqlRow.getText().toString();
+                long lRow1 = Long.parseLong(sRow1);
+                HotOrNot ex1 = new HotOrNot(this);
+                try {
+                    ex1.open();
+
+                ex1.deleteEntry(lRow1);
+                ex1.close();
+        }catch (Exception e){
+
+                String error = e.toString();
+                Dialog d = new Dialog(this);
+                d.setTitle("Dang!");
+                TextView tv = new TextView(this);
+                tv.setText(error);
+                d.setContentView(tv);
+                d.show();
+            }
                 break;
         }
     }

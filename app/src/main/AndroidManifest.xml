@@ -139,7 +139,12 @@
         <activity
             android:name="com.thenewboston.seth.HttpExample"
             android:label="@string/app_name" >
-        </activity><activity
+        </activity>
+        <activity
+            android:name="com.thenewboston.seth.XmlParsing"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
         android:name="com.thenewboston.seth.StatusBar"
         android:label="@string/app_name" >
     </activity>
